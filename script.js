@@ -1,13 +1,28 @@
-//------- Script para actualizar la hora en la barra de tareas ----------
+//------- Script para actualizar la hora y fecha en la barra de tareas ----------
 function updateTime() {
   const timeElement = document.getElementById("time");
+  const dateElement = document.getElementById("date");
   const now = new Date();
+
+  // Obtener hora y minutos
   const hours = now.getHours().toString().padStart(2, "0");
   const minutes = now.getMinutes().toString().padStart(2, "0");
+
+  // Obtener fecha
+  const day = now.getDate().toString().padStart(2, "0");
+  const month = (now.getMonth() + 1).toString().padStart(2, "0"); // Mes empieza desde 0
+  const year = now.getFullYear();
+
+  // Asignar valores
   timeElement.textContent = `${hours}:${minutes}`;
+  dateElement.textContent = `${day}/${month}/${year}`;
 }
-setInterval(updateTime, 1000);
+
+// Actualizar cada 60 segundos
+setInterval(updateTime, 60000);
 updateTime();
+
+
 
 //------------Abrir el navegador-------
 function openNewTab() {
@@ -17,6 +32,31 @@ function openNewTab() {
 //------------Abrir la terminal-------
 function createTerminal() {
   createWindow("Terminal", "assets/icons/terminal.png", 3);
+}
+
+//-------------------Abrir menu de user
+function toggleUser() {
+  let userWindow = document.getElementById("userWindow");
+
+  if (userWindow) {
+    // Si la ventana ya existe, la eliminamos (cerramos)
+    userWindow.remove();
+    document.getElementById("toggleButton").innerText = "Abrir Ventana";
+  } else {
+    // Si la ventana no existe, la creamos (abrimos)
+    userWindow = document.createElement("div");
+    userWindow.className = "user-window";
+    userWindow.id = "userWindow"; // ID para identificarlo
+
+    userWindow.innerHTML = `
+      <div class="user-content">
+        <h1>Hello, World!</h1>
+      </div>
+    `;
+
+    document.body.appendChild(userWindow);
+    document.getElementById("toggleButton").innerText = "Cerrar Ventana";
+  }
 }
 
 //---------------------------------Gestion de ventanas-----------
@@ -146,17 +186,18 @@ function makeWindowDraggable(windowElement, headerId) {
 
   document.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
-
+  
     let newX = e.clientX - offsetX;
     let newY = e.clientY - offsetY;
-
+  
     // Evitar que la ventana salga de la pantalla
     newX = Math.max(0, Math.min(window.innerWidth - windowElement.offsetWidth, newX));
     newY = Math.max(0, Math.min(window.innerHeight - windowElement.offsetHeight, newY));
-
+  
     windowElement.style.left = `${newX}px`;
     windowElement.style.top = `${newY}px`;
   });
+  
 
   document.addEventListener("mouseup", () => {
     isDragging = false;

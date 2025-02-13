@@ -40,7 +40,7 @@
     <!-------------- Barra de tareas -------------->
     <div class="taskbar">
       <div class="start-menu">
-        <img src="assets/icons/man_10126751.png" alt="Start Menu Icon" />
+        <button class="button-user" onclick="toggleUser()"><img src="assets/icons/man_10126751.png" alt="Start Menu Icon" /></button>
       </div>
 
       <div class="taskbar-icons">
@@ -60,11 +60,22 @@
           </button>
         </div>
       </div>
-
       <div class="taskbar-icons" id="taskbar-icons"></div>
-      <span class="taskbar-time" id="time"></span>
+      <!-- Contenedor para agrupar .wifi-icon y .taskbar-time -->
+      <div class="taskbar-right">
+        <div class="wifi-icon">
+          <img src="assets/icons/battery.png" alt="Battery" loading="lazy" />
+      </div>
+        <div class="wifi-icon">
+            <img src="assets/icons/wifi.png" alt="Wifi" loading="lazy" />
+        </div>
+        <div class="taskbar-time-container">
+          <span class="taskbar-time" id="time"></span>
+          <span class="taskbar-date" id="date"></span>
+        </div>        
     </div>
 
+    </div>
     <!-- Script optimizado con defer -->
     <script src="script.js" defer></script>
   </body>
