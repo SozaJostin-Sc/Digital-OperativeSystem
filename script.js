@@ -236,3 +236,14 @@ function makeWindowDraggable(windowElement, headerId) {
     isDragging = false;
   });
 }
+
+
+//PANTALLA DE CARGA
+// Ocultar la pantalla de carga cuando la página esté completamente cargada
+window.addEventListener("load", function () {
+  const loadingScreen = document.getElementById("loading-screen");
+  loadingScreen.style.opacity = "0"; // Desvanecer la pantalla de carga
+  setTimeout(() => {
+      loadingScreen.style.display = "none"; // Ocultar completamente después de la animación
+  }, 500); // Ajusta el tiempo según la duración de la animación
+});

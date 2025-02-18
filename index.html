@@ -10,21 +10,32 @@
 
     <!-- Hoja de estilos optimizada -->
     <link rel="stylesheet" href="style.css" />
-
-</head>
+  </head>
   <body>
     <!------------- Escritorio con Iconos ----------->
     <div class="desktop-icons">
       <div class="icon">
-        <button onclick="createWindow('Recycle Bin', 'assets/icons/trash-pixel.png', 1)">
-          <img src="assets/icons/trash-pixel.png" alt="Recycle Bin Icon" loading="lazy" />
+        <button
+          onclick="createWindow('Recycle Bin', 'assets/icons/trash-pixel.png', 1)"
+        >
+          <img
+            src="assets/icons/trash-pixel.png"
+            alt="Recycle Bin Icon"
+            loading="lazy"
+          />
         </button>
         <span>Recycle Bin</span>
       </div>
 
       <div class="icon">
-        <button onclick="createWindow('Projects', 'assets/icons/carpeta.png', 2)">
-          <img src="assets/icons/carpeta.png" alt="Projects Folder Icon" loading="lazy" />
+        <button
+          onclick="createWindow('Projects', 'assets/icons/carpeta.png', 2)"
+        >
+          <img
+            src="assets/icons/carpeta.png"
+            alt="Projects Folder Icon"
+            loading="lazy"
+          />
         </button>
         <span>Projects</span>
       </div>
@@ -40,7 +51,9 @@
     <!-------------- Barra de tareas -------------->
     <div class="taskbar">
       <div class="start-menu">
-        <button class="button-user" onclick="toggleUser()"><img src="assets/icons/man_10126751.png" alt="Start Menu Icon" /></button>
+        <button class="button-user" onclick="toggleUser()">
+          <img src="assets/icons/man_10126751.png" alt="Start Menu Icon" />
+        </button>
       </div>
 
       <div class="taskbar-icons">
@@ -65,16 +78,20 @@
       <div class="taskbar-right">
         <div class="wifi-icon">
           <img src="assets/icons/battery.png" alt="Battery" loading="lazy" />
-      </div>
+        </div>
         <div class="wifi-icon">
-            <img src="assets/icons/wifi.png" alt="Wifi" loading="lazy" />
+          <img src="assets/icons/wifi.png" alt="Wifi" loading="lazy" />
         </div>
         <div class="taskbar-time-container">
           <span class="taskbar-time" id="time"></span>
           <span class="taskbar-date" id="date"></span>
-        </div>        
+        </div>
+      </div>
     </div>
-
+    <!-- Pantalla de carga -->
+    <div id="loading-screen">
+      <div class="loading-spinner"></div>
+      <p>Cargando...</p>
     </div>
     <!-- Script optimizado con defer -->
     <script src="script.js" async></script>
