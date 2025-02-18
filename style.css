@@ -59,7 +59,7 @@ body {
     padding: 5px;
 }
 
-.taskbar-time-container:hover, .wifi-icon:hover,.icon:hover, .taskbar-icons .icon-task:hover, .taskbar .start-menu:hover {
+.taskbar-time-container:hover, .wifi-icon:hover, .icon:hover, .taskbar-icons .icon-task:hover, .taskbar .start-menu:hover {
     background-color: var(--color-hover);
 }
 
@@ -73,7 +73,7 @@ body {
     width: 100%;
 }
 
-.icon img{
+.icon img {
     width: 48px;
     height: 48px;
     object-fit: contain;
@@ -145,13 +145,13 @@ body {
 .taskbar-right {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Mueve el contenedor a la derecha */
-    gap: 10px; /* Espacio entre .wifi-icon y .taskbar-time */
+    margin-left: auto;
+    gap: 10px;
     justify-content: center;
     flex-flow: row nowrap;
 }
 
-.wifi-icon{
+.wifi-icon {
     border-radius: 2px;
 }
 
@@ -161,24 +161,23 @@ body {
     object-fit: contain;
 }
 
-
 .taskbar-time-container {
     display: flex;
     flex-direction: column;
     text-align: center;
-  }
-  
-  .taskbar-time {
-    font-size: 16px; /* Tamaño más grande para la hora */
+}
+
+.taskbar-time {
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  .taskbar-date {
-    font-size: 12px; /* Tamaño más pequeño para la fecha */
-    color: #ccc; /* Un tono más suave */
-  }
-  
+}
+
+.taskbar-date {
+    font-size: 12px;
+    color: #ccc;
+}
+
 /*--------------------------Ventanas---------------------- */
 .window {
     width: 300px;
@@ -187,7 +186,7 @@ body {
     min-height: 150px;
     background-color: var(--color-window-bg);
     position: absolute;
-    top: calc(50vh - 100px); /* Centrado sin usar transform */
+    top: calc(50vh - 100px);
     left: calc(50vw - 150px);
     border: 2px solid var(--color-border);
     box-shadow: 5px 5px 10px var(--color-shadow);
@@ -195,7 +194,6 @@ body {
     resize: both;
     overflow: hidden;
 }
-
 
 .window-header {
     background-color: var(--color-secondary);
@@ -227,8 +225,6 @@ body {
     max-height: 100%;
 }
 
-
-
 /*---------------------------USER WINDOWS------------------------------*/
 .user-window {
     display: flex;
@@ -239,21 +235,156 @@ body {
     min-height: 150px;
     background-color: var(--color-window-bg);
     position: fixed;
-    bottom: 50px; /* Justo encima de la taskbar (50px de altura) */
-    left: 0px; /* Alineado a la izquierda */
+    bottom: 50px;
+    left: 0px;
     border: 2px solid var(--color-active-window);
     box-shadow: 5px 5px 10px var(--color-shadow);
     z-index: 1000;
     overflow: hidden;
-    transform: translateY(100%); /* Inicia fuera de la pantalla (abajo) */
+    transform: translateY(100%);
     animation: slideUp 0.5s ease-in-out 0.1s forwards;
 }
 
 @keyframes slideUp {
     0% {
-        transform: translateY(100%); /* Comienza fuera de la pantalla (abajo) */
+        transform: translateY(100%);
     }
     100% {
-        transform: translateY(0); /* Termina en su posición final */
+        transform: translateY(0);
+    }
+}
+
+/*--------------------------- Media Queries ---------------------------*/
+@media (max-width: 768px) {
+    /* Ajustes para pantallas pequeñas (móviles) */
+
+    /* Iconos del escritorio */
+    .desktop-icons {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .icon {
+        width: 60px;
+        height: 70px;
+    }
+
+    .icon img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .icon span {
+        font-size: 10px;
+    }
+
+    /* Barra de tareas */
+    .taskbar {
+        height: 40px;
+    }
+
+    .taskbar .start-menu {
+        width: 40px;
+        height: 30px;
+    }
+
+    .taskbar .start-menu img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .taskbar-icons .icon-task {
+        width: 30px;
+        height: 30px;
+    }
+
+    .taskbar-icons .icon-task img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .taskbar-time {
+        font-size: 14px;
+    }
+
+    .taskbar-date {
+        font-size: 10px;
+    }
+
+    /* Ventanas */
+    .window {
+        width: 90%;
+        height: 200px;
+        min-width: unset;
+        min-height: unset;
+        top: 10%;
+        left: 5%;
+    }
+
+    .user-window {
+        width: 90%;
+        height: 300px;
+        left: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes para pantallas muy pequeñas */
+
+    /* Iconos del escritorio */
+    .icon {
+        width: 50px;
+        height: 60px;
+    }
+
+    .icon img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .icon span {
+        font-size: 9px;
+    }
+
+    /* Barra de tareas */
+    .taskbar {
+        height: 35px;
+    }
+
+    .taskbar .start-menu {
+        width: 35px;
+        height: 25px;
+    }
+
+    .taskbar .start-menu img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .taskbar-icons .icon-task {
+        width: 25px;
+        height: 25px;
+    }
+
+    .taskbar-icons .icon-task img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .taskbar-time {
+        font-size: 12px;
+    }
+
+    .taskbar-date {
+        font-size: 9px;
+    }
+
+    /* Ventanas */
+    .window {
+        height: 150px;
+    }
+
+    .user-window {
+        height: 250px;
     }
 }
