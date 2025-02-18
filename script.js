@@ -22,8 +22,6 @@ function updateTime() {
 setInterval(updateTime, 60000);
 updateTime();
 
-
-
 //------------Abrir el navegador-------
 function openNewTab() {
   window.open("https://www.google.com");
@@ -107,6 +105,9 @@ function createWindow(title, iconPath, id) {
   windowDiv.addEventListener("mousedown", () => {
     bringWindowToFront(windowDiv);
   });
+  windowDiv.addEventListener("touchstart", () => {
+    bringWindowToFront(windowDiv);
+  });
 }
 
 function createTaskbarIcon(winId, iconPath, title) {
@@ -177,6 +178,7 @@ function makeWindowDraggable(windowElement, headerId) {
   let isDragging = false;
   let offsetX, offsetY;
 
+  // Eventos para ratón
   header.addEventListener("mousedown", (e) => {
     isDragging = true;
     offsetX = e.clientX - windowElement.offsetLeft;
@@ -184,22 +186,53 @@ function makeWindowDraggable(windowElement, headerId) {
     bringWindowToFront(windowElement); // Traer al frente al empezar a mover
   });
 
+  // Eventos para pantallas táctiles
+  header.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    const touch = e.touches[0]; // Obtener el primer toque
+    offsetX = touch.clientX - windowElement.offsetLeft;
+    offsetY = touch.clientY - windowElement.offsetTop;
+    bringWindowToFront(windowElement); // Traer al frente al empezar a mover
+  });
+
+  // Mover ventana (ratón)
   document.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
-  
+
     let newX = e.clientX - offsetX;
     let newY = e.clientY - offsetY;
-  
+
     // Evitar que la ventana salga de la pantalla
     newX = Math.max(0, Math.min(window.innerWidth - windowElement.offsetWidth, newX));
     newY = Math.max(0, Math.min(window.innerHeight - windowElement.offsetHeight, newY));
-  
+
     windowElement.style.left = `${newX}px`;
     windowElement.style.top = `${newY}px`;
   });
-  
 
+  // Mover ventana (toque)
+  document.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+
+    const touch = e.touches[0]; // Obtener el primer toque
+    let newX = touch.clientX - offsetX;
+    let newY = touch.clientY - offsetY;
+
+    // Evitar que la ventana salga de la pantalla
+    newX = Math.max(0, Math.min(window.innerWidth - windowElement.offsetWidth, newX));
+    newY = Math.max(0, Math.min(window.innerHeight - windowElement.offsetHeight, newY));
+
+    windowElement.style.left = `${newX}px`;
+    windowElement.style.top = `${newY}px`;
+  });
+
+  // Detener movimiento (ratón)
   document.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+
+  // Detener movimiento (toque)
+  document.addEventListener("touchend", () => {
     isDragging = false;
   });
 }
